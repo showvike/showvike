@@ -4,6 +4,11 @@
 
 I'm a software engineer based in Dhaka, Bangladesh, with **2 years of professional experience** in building robust, scalable, and user-centered web applications. My work spans the full development cycle—from frontend interfaces to backend systems and cloud-native architecture.
 
+📝 Resume
+<br>
+<br>
+[![Download-Resume](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download-Resume")](https://drive.google.com/file/d/1ZLyxx1_OH-F8cH-jKDE1ZEFUS6PcXd7b/view?usp=sharing)
+
 ---
 
 ## 🔧 Tech Stack
