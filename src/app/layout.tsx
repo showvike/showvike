@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Showvike's Showcase",
     images: [
       {
-        url: "/profile-image.jpeg",
+        url: "/profile-image-meta.jpeg",
         width: 1200,
         height: 630,
         alt: "Showvike Portfolio Banner",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Showvike's Showcase",
     description: "Portfolio of Showvike Mondal Ovi, Software Engineer",
-    images: ["/profile-image.jpeg"],
+    images: ["/profile-image-meta.jpeg"],
   },
 };
 
