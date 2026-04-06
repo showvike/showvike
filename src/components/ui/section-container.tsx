@@ -17,22 +17,21 @@ export function SectionContainer({
   ...props
 }: SectionContainerProps) {
   return (
-    <section id={id} className={cn('py-10 md:py-14', className)} {...props}>
+    <section
+      id={id}
+      className={cn('scroll-mt-24 py-14 md:scroll-mt-28 md:py-18 lg:scroll-mt-32 lg:py-20', className)}
+      {...props}
+    >
       {title && (
-        <div className="mb-8 md:mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-5 md:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <div className="mb-3 flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-[0.32em] text-primary/80">
-                Section
-              </span>
-              <span className="h-px w-16 bg-border/80" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold text-foreground">
+            <div className="mb-4 h-px w-16 bg-gradient-to-r from-primary/80 to-primary/10" />
+            <h2 className="text-3xl font-headline font-semibold tracking-tight text-foreground md:text-4xl">
               {title}
             </h2>
           </div>
           {description ? (
-            <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base md:text-right">
+            <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base lg:text-right">
               {description}
             </p>
           ) : null}

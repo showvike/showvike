@@ -12,14 +12,15 @@ import { portfolioData } from '@/data/portfolio';
 export default function LandingPage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-background">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.16),transparent_48%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.18),transparent_48%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-[38rem] -z-10 h-[24rem] bg-[linear-gradient(to_bottom,transparent,rgba(15,23,42,0.18),transparent)]" />
       <Header
         contact={portfolioData.contact}
         name={portfolioData.name}
         resumeUrl={portfolioData.contact.resumeUrl}
       />
 
-      <main className="container mx-auto flex-grow px-4 pt-24 sm:px-8 md:px-16 md:pt-28 lg:px-24 xl:px-32">
+      <main className="container mx-auto flex-grow px-4 pb-20 pt-24 sm:px-8 md:px-16 md:pt-28 lg:px-24 lg:pb-28 xl:px-32">
         <HeroSection
           id="about"
           name={portfolioData.name}
@@ -41,6 +42,7 @@ export default function LandingPage() {
           id="contact"
           contact={portfolioData.contact}
           availability={portfolioData.availability}
+          openToRoles={portfolioData.openToRoles}
         />
       </main>
 

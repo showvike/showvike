@@ -1,7 +1,6 @@
 export const siteUrl = "https://showvike.vercel.app";
 
-export const resumeUrl =
-  "https://drive.google.com/file/d/1ZLyxx1_OH-F8cH-jKDE1ZEFUS6PcXd7b/view?usp=sharing";
+export const resumeUrl = "/resume.pdf";
 
 export interface ContactInfo {
   location: string;
@@ -17,17 +16,9 @@ export interface Stat {
 }
 
 export interface SkillsData {
-  expertise: string[];
-  comfortable: string[];
-  familiar: string[];
+  core: string[];
+  platform: string[];
   tools: string[];
-}
-
-export interface ExperienceProject {
-  name: string;
-  description: string;
-  impact?: string;
-  stack: string[];
 }
 
 export interface ExperienceItem {
@@ -35,9 +26,13 @@ export interface ExperienceItem {
   company: string;
   location: string;
   dates: string;
-  summary: string;
-  responsibilities: string[];
-  keyProjects: ExperienceProject[];
+  scope: string;
+  highlights: string[];
+}
+
+export interface ProjectProofPoint {
+  label: string;
+  text: string;
 }
 
 export interface FeaturedProject {
@@ -45,7 +40,8 @@ export interface FeaturedProject {
   company: string;
   category: string;
   impact: string;
-  description: string;
+  summary: string;
+  proofPoints: ProjectProofPoint[];
   stack: string[];
 }
 
@@ -71,6 +67,7 @@ export interface PortfolioData {
   headline: string;
   summary: string;
   availability: string;
+  openToRoles: string[];
   contact: ContactInfo;
   stats: Stat[];
   skills: SkillsData;
@@ -89,7 +86,12 @@ export const portfolioData: PortfolioData = {
   summary:
     "Full-stack software engineer with over 2 years of professional experience building scalable web platforms and Shopify products. Strong in ReactJS, NextJS, JavaScript, TypeScript, Shopify, NodeJS, and ExpressJS, with hands-on AWS experience across Cognito, AppSync, Amplify, Lambda, S3, DynamoDB, and SES. I care about clean implementation, performance, SEO, and maintainable product delivery.",
   availability:
-    "I am based in Mirpur, Dhaka and open to discussing software engineering roles, product work, and Shopify-focused builds.",
+    "Open to Software Engineer, Full-Stack Engineer, and Shopify-focused roles where I can contribute to scalable product work and modern web delivery.",
+  openToRoles: [
+    "Software Engineer",
+    "Full-Stack Engineer",
+    "Shopify-Focused Roles",
+  ],
   contact: {
     location: "Mirpur, Dhaka, Bangladesh",
     email: "showvike@gmail.com",
@@ -98,28 +100,27 @@ export const portfolioData: PortfolioData = {
     resumeUrl,
   },
   stats: [
-    { value: "2+ Years", label: "professional experience" },
-    { value: "7M+ Users", label: "platform migration exposure" },
-    { value: "5 Roles", label: "job platform access model" },
-    { value: "৳4 Crore+", label: "ticket sales on coupon project" },
+    { value: "2+ Years", label: "production software delivery" },
+    { value: "7M+ Users", label: "platform scale handled in migration work" },
+    { value: "5 Roles", label: "role-based product workflows" },
+    { value: "৳4 Crore+", label: "ticket sales supported by coupon flows" },
   ],
   skills: {
-    expertise: [
+    core: [
       "JavaScript",
       "TypeScript",
       "ReactJS",
       "NextJS",
-      "TailwindCSS",
-      "Redux Toolkit",
-      "RTK Query",
-      "REST API",
-      "Git",
-      "GitHub",
       "Shopify",
-    ],
-    comfortable: [
       "NodeJS",
       "ExpressJS",
+      "TailwindCSS",
+      "REST API",
+    ],
+    platform: [
+      "Redux Toolkit",
+      "RTK Query",
+      "GraphQL",
       "MongoDB",
       "MySQL",
       "AWS Cognito",
@@ -133,31 +134,17 @@ export const portfolioData: PortfolioData = {
       "JWT",
       "TanStack Query",
       "Material UI",
-      "Bootstrap",
-      "Ant Design",
       "Polaris",
       "Liquid",
     ],
-    familiar: [
-      "GraphQL",
-      "Firebase",
-      "Socket.IO",
-      "Redux",
-      "Axios",
-      "Golang",
-      "Python",
-      "C",
-      "C++",
-      "PHP",
-    ],
     tools: [
+      "Git",
+      "GitHub",
       "Chrome DevTools",
       "Postman",
       "Vercel",
-      "Netlify",
       "Figma",
       "Jira",
-      "Hostinger",
     ],
   },
   experiences: [
@@ -166,43 +153,13 @@ export const portfolioData: PortfolioData = {
       company: "Zecodeek IT Ltd",
       location: "Mirpur DOHS, Dhaka",
       dates: "August 2025 – Present",
-      summary:
-        "Working on custom Shopify storefronts and apps with a focus on reusable architecture, merchant-friendly experiences, and reliable third-party integrations.",
-      responsibilities: [
-        "Design, develop, and maintain custom Shopify themes and apps.",
-        "Work with Liquid, JavaScript, CSS, ReactJS, and Shopify Polaris.",
-        "Build scalable reusable components for storefront and admin experiences.",
-        "Integrate third-party services using Shopify REST and GraphQL APIs.",
-        "Translate Figma designs into responsive templates and improve performance, SEO, and usability.",
-      ],
-      keyProjects: [
-        {
-          name: "Custom Shopify Stores & Themes",
-          impact: "Dynamic sections and merchant-manageable storefront layouts.",
-          description:
-            "Built fully customized Shopify stores and themes with flexible content sections and layouts that merchants can manage without code changes.",
-          stack: [
-            "Shopify Liquid",
-            "JavaScript",
-            "CSS",
-            "ReactJS",
-            "Polaris",
-          ],
-        },
-        {
-          name: "Shopify App Development",
-          impact: "Admin workflows, product and order management, and third-party integrations.",
-          description:
-            "Built custom Shopify apps with internal dashboards, product and order management flows, and integrations with external services.",
-          stack: [
-            "ReactJS",
-            "ExpressJS",
-            "NodeJS",
-            "Shopify APIs (REST & GraphQL)",
-            "Polaris",
-            "MongoDB",
-          ],
-        },
+      scope:
+        "Shopify theme and app development focused on reusable storefront architecture, merchant workflows, and third-party integrations.",
+      highlights: [
+        "Build and maintain custom Shopify themes and apps across storefront and admin experiences.",
+        "Work across Liquid, JavaScript, CSS, ReactJS, and Polaris for merchant-facing delivery.",
+        "Create reusable components and connect third-party services through Shopify REST and GraphQL APIs.",
+        "Turn Figma designs into responsive builds while improving performance, SEO, and usability.",
       ],
     },
     {
@@ -210,82 +167,13 @@ export const portfolioData: PortfolioData = {
       company: "Doodle Inc.",
       location: "Mirpur DOHS, Dhaka",
       dates: "November 2023 – July 2025",
-      summary:
-        "Built and maintained production features across job, social, and event platforms using NextJS, NodeJS, and AWS-backed infrastructure.",
-      responsibilities: [
-        "Developed and maintained responsive user interfaces using ReactJS, NextJS, and AWS services.",
-        "Built scalable server-side applications with NodeJS.",
-        "Collaborated through GitHub, code reviews, and Agile workflows.",
-        "Deployed and monitored applications on cloud infrastructure.",
-      ],
-      keyProjects: [
-        {
-          name: "Global Job Portal",
-          impact: "Supported 5 user types with role-based workflows and admin operations.",
-          description:
-            "Built a global job platform with an admin panel, advanced search, candidate-agency tagging, employer invite flows, notifications, email updates, role-based access, and Amazon Payfort integration.",
-          stack: [
-            "NextJS",
-            "ReactJS",
-            "NodeJS",
-            "Redux Toolkit",
-            "GraphQL",
-            "TypeScript",
-            "Material UI",
-            "TailwindCSS",
-            "JavaScript",
-            "AWS Cognito",
-            "AWS AppSync",
-            "AWS Lambda",
-            "AWS SES",
-            "AWS Amplify",
-            "AWS S3",
-            "AWS DynamoDB",
-          ],
-        },
-        {
-          name: "Social Media Platform Migration",
-          impact: "Contributed to a NextJS migration for a platform serving 7M+ users.",
-          description:
-            "Worked on the migration from ReactJS to NextJS to improve SEO and performance, and built an investor data room to track DAU and MAU.",
-          stack: [
-            "ReactJS",
-            "NextJS",
-            "JavaScript",
-            "Bootstrap",
-            "TailwindCSS",
-            "Material UI",
-            "AWS Cognito",
-            "AWS AppSync",
-            "AWS Lambda",
-            "AWS Amplify",
-            "AWS S3",
-            "AWS DynamoDB",
-            "Redux",
-            "GraphQL",
-          ],
-        },
-        {
-          name: "Concert Event Organizer Platform",
-          impact: "Coupon workflows supported concert ticket sales above ৳4 crore.",
-          description:
-            "Developed coupon creation, editing, validation, and tracking across the frontend, backend, and admin panel for a large-scale ticketing platform.",
-          stack: [
-            "ReactJS",
-            "NextJS",
-            "Bootstrap",
-            "Redux Toolkit",
-            "NodeJS",
-            "Material UI",
-            "AWS Cognito",
-            "AWS AppSync",
-            "AWS Lambda",
-            "AWS Amplify",
-            "AWS S3",
-            "AWS DynamoDB",
-            "GraphQL",
-          ],
-        },
+      scope:
+        "Full-stack product work across hiring, social, and ticketing platforms built with NextJS, NodeJS, and AWS-backed services.",
+      highlights: [
+        "Developed responsive interfaces with ReactJS and NextJS for production web products.",
+        "Built server-side features with NodeJS and supported role-based product workflows.",
+        "Collaborated through GitHub, code review, and Agile delivery processes.",
+        "Deployed and monitored cloud-hosted applications with a focus on stability and performance.",
       ],
     },
     {
@@ -293,58 +181,12 @@ export const portfolioData: PortfolioData = {
       company: "Tiggzy IT",
       location: "Kawran Bazar, Dhaka",
       dates: "July 2023 – October 2023",
-      summary:
-        "Contributed across frontend, backend, database modeling, and deployment work while building client and internal business applications.",
-      responsibilities: [
-        "Developed frontend and backend components using ReactJS, NodeJS, ExpressJS, MongoDB, and MySQL.",
-        "Deployed and maintained live applications.",
-        "Collaborated with Git and GitHub in a team environment.",
-      ],
-      keyProjects: [
-        {
-          name: "Company Portfolio Sites",
-          description:
-            "Built custom portfolio websites with dynamic admin panels so clients could manage section content without developer support.",
-          stack: [
-            "ReactJS",
-            "NodeJS",
-            "ExpressJS",
-            "MongoDB",
-            "Mongoose",
-            "JWT",
-            "TailwindCSS",
-            "MySQL",
-          ],
-        },
-        {
-          name: "E-commerce Platform",
-          description:
-            "Developed an e-commerce application with product listings, cart flows, and order processing.",
-          stack: [
-            "ReactJS",
-            "NodeJS",
-            "ExpressJS",
-            "MongoDB",
-            "Mongoose",
-            "TailwindCSS",
-            "NextJS",
-            "JWT",
-            "Ant Design",
-          ],
-        },
-        {
-          name: "HRM System",
-          description:
-            "Designed and deployed an HRM system with relational data structures and role-based access.",
-          stack: [
-            "ReactJS",
-            "NodeJS",
-            "ExpressJS",
-            "JWT",
-            "Bootstrap",
-            "MySQL",
-          ],
-        },
+      scope:
+        "Frontend, backend, database, and deployment work for client portfolio, e-commerce, and HRM systems.",
+      highlights: [
+        "Developed frontend and backend features using ReactJS, NodeJS, ExpressJS, MongoDB, and MySQL.",
+        "Worked on live applications across portfolio, e-commerce, and internal business tools.",
+        "Supported deployment, maintenance, and team collaboration through Git and GitHub.",
       ],
     },
   ],
@@ -353,9 +195,23 @@ export const portfolioData: PortfolioData = {
       name: "Custom Shopify Stores & Themes",
       company: "Zecodeek IT Ltd",
       category: "Shopify Storefronts",
-      impact: "Dynamic sections and merchant-manageable layouts.",
-      description:
-        "Delivered custom storefronts and themes with flexible section architecture, responsive builds, and stronger performance and usability.",
+      impact: "Merchant-manageable storefront architecture.",
+      summary:
+        "Custom Shopify storefronts built for flexible sections, responsive layouts, and easier merchant control.",
+      proofPoints: [
+        {
+          label: "Challenge",
+          text: "Merchants needed tailored storefront experiences without depending on developers for routine content and layout updates.",
+        },
+        {
+          label: "Contribution",
+          text: "Built custom themes and reusable dynamic sections with Shopify Liquid, JavaScript, CSS, ReactJS, and Polaris.",
+        },
+        {
+          label: "Result",
+          text: "Delivered storefronts with more manageable content workflows and stronger performance, SEO, and usability.",
+        },
+      ],
       stack: [
         "Shopify Liquid",
         "JavaScript",
@@ -368,9 +224,23 @@ export const portfolioData: PortfolioData = {
       name: "Shopify App Development",
       company: "Zecodeek IT Ltd",
       category: "Shopify Apps",
-      impact: "Admin dashboards, product flows, and third-party integrations.",
-      description:
-        "Built custom Shopify apps for merchant operations, including internal dashboards, product and order management, and API integrations.",
+      impact: "Custom admin workflows and integrations.",
+      summary:
+        "Internal Shopify apps built to support merchant operations beyond the default admin experience.",
+      proofPoints: [
+        {
+          label: "Challenge",
+          text: "Merchants needed custom workflows for dashboards, product operations, order handling, and third-party integrations.",
+        },
+        {
+          label: "Contribution",
+          text: "Built app interfaces and backend flows for admin dashboards, product and order management, and REST and GraphQL API integrations.",
+        },
+        {
+          label: "Result",
+          text: "Delivered custom Shopify tooling that supported day-to-day operations in a single merchant-focused workflow.",
+        },
+      ],
       stack: [
         "ReactJS",
         "NodeJS",
@@ -384,9 +254,23 @@ export const portfolioData: PortfolioData = {
       name: "Global Job Portal",
       company: "Doodle Inc.",
       category: "Multi-Role Platform",
-      impact: "Global job product supporting 5 user roles.",
-      description:
-        "Built role-based workflows, admin tooling, advanced search, notifications, email updates, and payment integration for a global hiring platform.",
+      impact: "Global job product with 5 user roles.",
+      summary:
+        "A role-based hiring platform combining admin tooling, search, notifications, email updates, and payments.",
+      proofPoints: [
+        {
+          label: "Challenge",
+          text: "The platform had to support 5 user roles, complex access rules, admin operations, advanced search, and payment flows in one product.",
+        },
+        {
+          label: "Contribution",
+          text: "Built role-based workflows, candidate-agency tagging, employer invite flows, notifications, email updates, and Amazon Payfort integration.",
+        },
+        {
+          label: "Result",
+          text: "Shipped a production hiring platform with complex multi-role workflows and operational tooling for global use.",
+        },
+      ],
       stack: [
         "NextJS",
         "ReactJS",
@@ -401,9 +285,23 @@ export const portfolioData: PortfolioData = {
       name: "Social Media Platform Migration",
       company: "Doodle Inc.",
       category: "Migration & Performance",
-      impact: "NextJS migration work on a platform with 7M+ users.",
-      description:
-        "Contributed to a ReactJS to NextJS migration focused on SEO and performance, and built investor-facing DAU and MAU reporting views.",
+      impact: "NextJS migration work on a 7M+ user platform.",
+      summary:
+        "Migration work focused on improving SEO and performance for a large-scale social product.",
+      proofPoints: [
+        {
+          label: "Challenge",
+          text: "A high-traffic ReactJS application needed a move to NextJS to improve search visibility and performance at scale.",
+        },
+        {
+          label: "Contribution",
+          text: "Contributed to the ReactJS to NextJS migration and built an investor data room to track DAU and MAU.",
+        },
+        {
+          label: "Result",
+          text: "Supported migration work on a platform serving 7M+ users while adding investor-facing reporting capabilities.",
+        },
+      ],
       stack: [
         "ReactJS",
         "NextJS",
@@ -418,9 +316,23 @@ export const portfolioData: PortfolioData = {
       name: "Concert Event Organizer Platform",
       company: "Doodle Inc.",
       category: "Ticketing Platform",
-      impact: "Coupon management used in ticket sales above ৳4 crore.",
-      description:
-        "Implemented coupon creation, editing, validation, and tracking across the customer flow, backend, and admin panel.",
+      impact: "Coupon workflows tied to ticket sales above ৳4 crore.",
+      summary:
+        "Coupon management for a large-scale concert ticketing product across customer, backend, and admin flows.",
+      proofPoints: [
+        {
+          label: "Challenge",
+          text: "The ticketing platform needed reliable coupon logic across customer checkout, backend validation, and admin operations during high-volume sales.",
+        },
+        {
+          label: "Contribution",
+          text: "Built coupon create, edit, validate, and tracking functionality across the frontend, backend, and admin panel.",
+        },
+        {
+          label: "Result",
+          text: "Supported promotional workflows for concert ticket sales above ৳4 crore with clearer operational control.",
+        },
+      ],
       stack: [
         "ReactJS",
         "NextJS",

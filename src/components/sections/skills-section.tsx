@@ -5,29 +5,24 @@ import type { SkillsData } from '@/data/portfolio';
 import {
   Archive,
   BadgeCheck,
-  Bolt,
   BrainCircuit,
   Briefcase,
-  Cloud,
   CloudCog,
-  CloudLightning,
   CloudUpload,
   Component,
   Cpu,
   Database,
-  FileCode,
   Figma,
+  FileCode,
   FunctionSquare,
   GitMerge,
   Github,
-  Globe,
   Inspect,
   KeyRound,
   Layers,
   Mail,
   Network,
   Palette,
-  PlugZap,
   RefreshCw,
   Route,
   Send,
@@ -61,24 +56,22 @@ const getSkillIcon = (skillName: string): React.ReactNode => {
       return <BrainCircuit size={iconSize} aria-label="ReactJS icon" />;
     case 'nextjs':
       return <Layers size={iconSize} aria-label="NextJS icon" />;
-    case 'tailwindcss':
-      return <Palette size={iconSize} aria-label="TailwindCSS icon" />;
-    case 'redux toolkit':
-      return <Store size={iconSize} aria-label="Redux Toolkit icon" />;
-    case 'rtk query':
-      return <Network size={iconSize} aria-label="RTK Query icon" />;
-    case 'rest api':
-      return <Webhook size={iconSize} aria-label="REST API icon" />;
-    case 'git':
-      return <GitMerge size={iconSize} aria-label="Git icon" />;
-    case 'github':
-      return <Github size={iconSize} aria-label="GitHub icon" />;
     case 'shopify':
       return <ShoppingBag size={iconSize} aria-label="Shopify icon" />;
     case 'nodejs':
       return <Server size={iconSize} aria-label="NodeJS icon" />;
     case 'expressjs':
       return <Route size={iconSize} aria-label="ExpressJS icon" />;
+    case 'tailwindcss':
+      return <Palette size={iconSize} aria-label="TailwindCSS icon" />;
+    case 'rest api':
+      return <Webhook size={iconSize} aria-label="REST API icon" />;
+    case 'redux toolkit':
+      return <Store size={iconSize} aria-label="Redux Toolkit icon" />;
+    case 'rtk query':
+      return <Network size={iconSize} aria-label="RTK Query icon" />;
+    case 'graphql':
+      return <Share size={iconSize} aria-label="GraphQL icon" />;
     case 'mongodb':
     case 'mysql':
     case 'mongoose':
@@ -102,42 +95,24 @@ const getSkillIcon = (skillName: string): React.ReactNode => {
     case 'tanstack query':
       return <RefreshCw size={iconSize} aria-label="TanStack Query icon" />;
     case 'material ui':
-    case 'bootstrap':
-    case 'ant design':
     case 'polaris':
       return <Component size={iconSize} aria-label="Component library icon" />;
     case 'liquid':
       return <BadgeCheck size={iconSize} aria-label="Liquid icon" />;
-    case 'graphql':
-      return <Share size={iconSize} aria-label="GraphQL icon" />;
-    case 'firebase':
-      return <CloudLightning size={iconSize} aria-label="Firebase icon" />;
-    case 'socket.io':
-      return <PlugZap size={iconSize} aria-label="Socket.IO icon" />;
-    case 'redux':
-      return <Store size={iconSize} aria-label="Redux icon" />;
-    case 'axios':
-      return <Network size={iconSize} aria-label="Axios icon" />;
-    case 'golang':
-    case 'python':
-    case 'c':
-    case 'c++':
-    case 'php':
-      return <FileCode size={iconSize} aria-label="Language icon" />;
+    case 'git':
+      return <GitMerge size={iconSize} aria-label="Git icon" />;
+    case 'github':
+      return <Github size={iconSize} aria-label="GitHub icon" />;
     case 'chrome devtools':
       return <Inspect size={iconSize} aria-label="Chrome DevTools icon" />;
     case 'postman':
       return <Send size={iconSize} aria-label="Postman icon" />;
     case 'vercel':
       return <Triangle size={iconSize} aria-label="Vercel icon" />;
-    case 'netlify':
-      return <Bolt size={iconSize} aria-label="Netlify icon" />;
     case 'figma':
       return <Figma size={iconSize} aria-label="Figma icon" />;
     case 'jira':
       return <Briefcase size={iconSize} aria-label="Jira icon" />;
-    case 'hostinger':
-      return <Globe size={iconSize} aria-label="Hostinger icon" />;
     default:
       return <Settings2 size={iconSize} aria-label="Default skill icon" />;
   }
@@ -145,26 +120,20 @@ const getSkillIcon = (skillName: string): React.ReactNode => {
 
 const categories = [
   {
-    title: 'Expertise',
-    description: 'Core tools I use regularly to ship product work.',
-    skillsKey: 'expertise',
+    title: 'Core Stack',
+    description: 'Primary tools I use for full-stack and Shopify product delivery.',
+    skillsKey: 'core',
     icon: <Cpu className="h-5 w-5" />,
   },
   {
-    title: 'Comfortable',
-    description: 'Production experience across backend, cloud, and commerce tooling.',
-    skillsKey: 'comfortable',
+    title: 'Platform & Commerce',
+    description: 'Supporting technologies used across scalable web platforms and merchant systems.',
+    skillsKey: 'platform',
     icon: <Database className="h-5 w-5" />,
   },
   {
-    title: 'Familiar',
-    description: 'Technologies I have worked with and can ramp back into quickly.',
-    skillsKey: 'familiar',
-    icon: <Cloud className="h-5 w-5" />,
-  },
-  {
-    title: 'Tools',
-    description: 'Everyday workflow and delivery tools.',
+    title: 'Workflow Tools',
+    description: 'Tools I use for debugging, collaboration, deployment, and handoff.',
     skillsKey: 'tools',
     icon: <Settings className="h-5 w-5" />,
   },
@@ -175,37 +144,37 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
     <SectionContainer
       title="Skills"
       id="skills"
-      description="A practical stack shaped by production work in web platforms, Shopify builds, and AWS-backed applications."
+      description="A focused stack for full-stack web products, Shopify work, and scalable platform delivery."
     >
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {categories.map((category) => {
           const items = skills[category.skillsKey];
 
           return (
             <Card
               key={category.title}
-              className="border-border/80 bg-card/70 shadow-[0_16px_40px_rgba(2,6,23,0.14)] transition-colors duration-300 hover:border-primary/50"
+              className="border-border/80 bg-card/72 shadow-[0_18px_42px_rgba(2,6,23,0.14)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/45"
             >
-              <CardContent className="p-6">
-                <div className="mb-5 flex items-start gap-4">
-                  <div className="rounded-xl border border-primary/20 bg-primary/10 p-3 text-primary">
+              <CardContent className="p-6 md:p-7">
+                <div className="mb-6 flex items-start gap-4">
+                  <div className="rounded-2xl border border-primary/20 bg-primary/10 p-3 text-primary shadow-[0_10px_24px_rgba(45,212,191,0.12)]">
                     {category.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-headline font-semibold text-foreground">
+                    <h3 className="text-xl font-headline font-semibold tracking-tight text-foreground">
                       {category.title}
                     </h3>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                    <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
                       {category.description}
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {items.map((skill) => (
                     <Badge
                       key={skill}
                       variant="secondary"
-                      className="flex cursor-default items-center gap-2 rounded-full border border-border/80 bg-background/80 px-3 py-1.5 text-sm text-foreground transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-foreground"
+                      className="flex min-h-10 cursor-default items-center gap-2 rounded-full border border-border/80 bg-background/82 px-3.5 py-2 text-sm text-foreground transition-all duration-200 hover:border-primary/50 hover:bg-primary/10 hover:text-foreground"
                     >
                       {getSkillIcon(skill)}
                       <span>{skill}</span>

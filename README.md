@@ -18,7 +18,7 @@ Next.js portfolio site for Showvike Mondal Ovi, a software engineer based in Mir
 
 ## Resume
 
-[Open Resume](https://drive.google.com/file/d/1ZLyxx1_OH-F8cH-jKDE1ZEFUS6PcXd7b/view?usp=sharing)
+[Open Resume](./public/resume.pdf)
 
 ## Contact
 

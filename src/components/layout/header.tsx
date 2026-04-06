@@ -23,6 +23,7 @@ const navLinks = [
 export function Header({ contact, name, resumeUrl }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
   const brandName = name.split(" ")[0].toLowerCase();
 
   useEffect(() => {
@@ -42,11 +43,49 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const getSectionIdFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        setActiveSection(hash);
+      }
+    };
+
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.replace("#", "")))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleSection?.target.id) {
+          setActiveSection(visibleSection.target.id);
+        }
+      },
+      {
+        rootMargin: "-30% 0px -50% 0px",
+        threshold: [0.2, 0.4, 0.6],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    getSectionIdFromHash();
+    window.addEventListener("hashchange", getSectionIdFromHash);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("hashchange", getSectionIdFromHash);
+    };
+  }, []);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "border-b border-border/70 bg-background/85 shadow-[0_10px_40px_rgba(2,6,23,0.25)] backdrop-blur-xl"
+          ? "border-b border-border/70 bg-background/80 shadow-[0_14px_40px_rgba(2,6,23,0.28)] backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
@@ -60,23 +99,28 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
             {brandName}
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-mono text-foreground/80 transition-colors duration-300 hover:text-primary"
+                onClick={() => setActiveSection(link.href.replace("#", ""))}
+                className={`rounded-full px-3 py-2 text-sm font-mono transition-all duration-200 ${
+                  activeSection === link.href.replace("#", "")
+                    ? "bg-primary/10 text-primary"
+                    : "text-foreground/75 hover:bg-card/80 hover:text-foreground"
+                }`}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="flex items-center gap-3">
+            <div className="ml-3 flex items-center gap-2 rounded-full border border-border/70 bg-card/55 px-2 py-1 shadow-[0_8px_24px_rgba(2,6,23,0.14)]">
               <Link
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="text-muted-foreground transition-colors hover:text-primary"
+                className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
               >
                 <Github size={18} />
               </Link>
@@ -85,7 +129,7 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-muted-foreground transition-colors hover:text-primary"
+                className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
               >
                 <Linkedin size={18} />
               </Link>
@@ -93,7 +137,7 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
                 variant="outline"
                 size="sm"
                 asChild
-                className="btn-bc-style rounded-full px-5 font-mono"
+                className="btn-bc-style rounded-full px-5 font-mono shadow-none"
               >
                 <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                   Resume
@@ -121,13 +165,20 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
 
       {isMenuOpen ? (
         <div className="fixed inset-0 top-20 z-40 flex flex-col justify-between bg-background/95 p-6 backdrop-blur-xl md:hidden">
-          <nav className="flex flex-col gap-5 pt-8">
+          <nav className="flex flex-col gap-3 pt-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-lg font-headline font-semibold text-foreground transition-colors hover:text-primary"
-                onClick={() => setIsMenuOpen(false)}
+                className={`rounded-2xl px-4 py-3 text-lg font-headline font-semibold transition-colors ${
+                  activeSection === link.href.replace("#", "")
+                    ? "bg-primary/10 text-primary"
+                    : "bg-card/55 text-foreground hover:text-primary"
+                }`}
+                onClick={() => {
+                  setActiveSection(link.href.replace("#", ""));
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.name}
               </Link>
@@ -150,13 +201,13 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
                 Resume
               </a>
             </Button>
-            <div className="flex items-center gap-5 text-muted-foreground">
+            <div className="flex items-center gap-4 text-muted-foreground">
               <Link
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="transition-colors hover:text-primary"
+                className="rounded-full border border-border/70 bg-card/55 p-3 transition-colors hover:border-primary/50 hover:text-primary"
               >
                 <Github size={22} />
               </Link>
@@ -165,7 +216,7 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="transition-colors hover:text-primary"
+                className="rounded-full border border-border/70 bg-card/55 p-3 transition-colors hover:border-primary/50 hover:text-primary"
               >
                 <Linkedin size={22} />
               </Link>
