@@ -1,21 +1,35 @@
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
+import { portfolioData, siteUrl } from "@/data/portfolio";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Showvike's Showcase",
-  description: "Portfolio of Showvike Mondal Ovi, Software Engineer",
+  metadataBase: new URL(siteUrl),
+  title: `${portfolioData.name} | ${portfolioData.title}`,
+  description:
+    "Portfolio of Showvike Mondal Ovi, a software engineer focused on full-stack web platforms, Shopify development, performance, and scalable product work.",
+  keywords: [
+    "Showvike Mondal Ovi",
+    "Software Engineer",
+    "Full-Stack Engineer",
+    "Next.js",
+    "React",
+    "Shopify",
+    "TypeScript",
+    "Bangladesh",
+  ],
   openGraph: {
-    title: "Showvike's Showcase",
-    description: "Portfolio of Showvike Mondal Ovi, Software Engineer",
-    url: "https://showvike.vercel.app/",
-    siteName: "Showvike's Showcase",
+    title: `${portfolioData.name} | ${portfolioData.title}`,
+    description:
+      "Full-stack software engineer with experience across Shopify, scalable web platforms, modern frontend architecture, and AWS-backed products.",
+    url: siteUrl,
+    siteName: portfolioData.name,
     images: [
       {
         url: "/profile-image-meta.jpeg",
         width: 1200,
         height: 630,
-        alt: "Showvike Portfolio Banner",
+        alt: `${portfolioData.name} portfolio preview`,
       },
     ],
     locale: "en_US",
@@ -23,9 +37,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Showvike's Showcase",
-    description: "Portfolio of Showvike Mondal Ovi, Software Engineer",
+    title: `${portfolioData.name} | ${portfolioData.title}`,
+    description:
+      "Portfolio of a software engineer building full-stack products, Shopify experiences, and scalable web platforms.",
     images: ["/profile-image-meta.jpeg"],
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 

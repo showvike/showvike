@@ -1,13 +1,6 @@
-// src/components/layout/footer.tsx
-import React from 'react';
 import Link from 'next/link';
 import { Github, Linkedin, Mail } from 'lucide-react';
-
-interface ContactInfo {
-  email: string;
-  linkedin: string;
-  github: string;
-}
+import type { ContactInfo } from '@/data/portfolio';
 
 interface FooterProps {
   contact: ContactInfo;
@@ -15,25 +8,45 @@ interface FooterProps {
 }
 
 export function Footer({ contact, name }: FooterProps) {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="py-8 md:py-12 text-center">
-      <div className="flex justify-center space-x-6 mb-6 md:hidden"> {/* Hidden on md and up, as social links are on side */}
-        <Link href={contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary transition-colors">
-          <Github size={24} />
-        </Link>
-        <Link href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
-          <Linkedin size={24} />
-        </Link>
-        <Link href={`mailto:${contact.email}`} aria-label="Email" className="text-muted-foreground hover:text-primary transition-colors">
-          <Mail size={24} />
-        </Link>
+    <footer className="border-t border-border/70 py-8 md:py-10">
+      <div className="container mx-auto flex flex-col gap-6 px-4 text-center sm:px-8 md:px-16 lg:px-24 xl:px-32">
+        <div className="flex items-center justify-center gap-5 text-muted-foreground">
+          <Link
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="transition-colors hover:text-primary"
+          >
+            <Github size={20} />
+          </Link>
+          <Link
+            href={contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="transition-colors hover:text-primary"
+          >
+            <Linkedin size={20} />
+          </Link>
+          <Link
+            href={`mailto:${contact.email}`}
+            aria-label="Email"
+            className="transition-colors hover:text-primary"
+          >
+            <Mail size={20} />
+          </Link>
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm text-foreground/90">{name}</p>
+          <p className="text-xs font-mono text-muted-foreground">
+            Software Engineer • Mirpur, Dhaka, Bangladesh • {year}
+          </p>
+        </div>
       </div>
-      <p className="text-xs text-muted-foreground font-mono">
-        Designed & Built by {name}
-      </p>
-      <p className="text-xs text-muted-foreground font-mono mt-1">
-        Inspired by Brittany Chiang's portfolio.
-      </p>
     </footer>
   );
 }

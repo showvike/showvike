@@ -1,115 +1,112 @@
-// src/components/layout/header.tsx
 "use client";
-import { Button } from "@/components/ui/button";
-import { X as CloseIcon, Github, Linkedin, Menu } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
-interface ContactInfo {
-  linkedin: string;
-  github: string;
-}
+import { Button } from "@/components/ui/button";
+import type { ContactInfo } from "@/data/portfolio";
+import { Github, Linkedin, Menu, X as CloseIcon } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   contact: ContactInfo;
   name: string;
+  resumeUrl: string;
 }
 
 const navLinks = [
   { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
   { name: "Experience", href: "#experience" },
-  { name: "Work", href: "#projects" }, // Assuming projects section has id="projects"
+  { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 
-export function Header({ contact, name }: HeaderProps) {
+export function Header({ contact, name, resumeUrl }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname(); // For active link highlighting if needed on separate pages
-
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
+  const brandName = name.split(" ")[0].toLowerCase();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 12);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out 
-                  ${
-                    isScrolled
-                      ? "bg-background/80 shadow-lg backdrop-blur-md"
-                      : "bg-transparent"
-                  }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-border/70 bg-background/85 shadow-[0_10px_40px_rgba(2,6,23,0.25)] backdrop-blur-xl"
+          : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex h-20 items-center justify-between gap-4">
           <Link
             href="/"
-            className="text-2xl font-bold text-primary font-mono group"
+            className="font-mono text-lg font-semibold tracking-[0.18em] text-primary transition-colors duration-300 hover:text-foreground"
+            aria-label={`${name} home`}
           >
-            <span className="group-hover:text-foreground transition-colors duration-300">
-              {initials}
-            </span>
-            <sub>
-              <small>beta</small>
-            </sub>
+            {brandName}
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link, index) => (
+          <nav className="hidden items-center gap-6 md:flex">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-mono text-foreground hover:text-primary transition-colors duration-300"
+                className="text-sm font-mono text-foreground/80 transition-colors duration-300 hover:text-primary"
               >
-                <span className="text-primary mr-1">0{index + 1}.</span>
                 {link.name}
               </Link>
             ))}
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="btn-bc-style font-mono"
-            >
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                {" "}
-                {/* Replace with actual resume link */}
-                Resume
-              </a>
-            </Button>
+            <div className="flex items-center gap-3">
+              <Link
+                href={contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Github size={18} />
+              </Link>
+              <Link
+                href={contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Linkedin size={18} />
+              </Link>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="btn-bc-style rounded-full px-5 font-mono"
+              >
+                <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                  Resume
+                </a>
+              </Button>
+            </div>
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
-              onClick={toggleMenu}
+              onClick={() => setIsMenuOpen((open) => !open)}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -122,61 +119,60 @@ export function Header({ contact, name }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-background/95 backdrop-blur-xl z-40 p-6 flex flex-col items-center justify-center space-y-6">
-          <nav className="flex flex-col items-center space-y-6">
-            {navLinks.map((link, index) => (
+      {isMenuOpen ? (
+        <div className="fixed inset-0 top-20 z-40 flex flex-col justify-between bg-background/95 p-6 backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col gap-5 pt-8">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-lg font-mono text-foreground hover:text-primary transition-colors duration-300"
+                className="text-lg font-headline font-semibold text-foreground transition-colors hover:text-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-primary mr-1">0{index + 1}.</span>
                 {link.name}
               </Link>
             ))}
+          </nav>
+
+          <div className="space-y-5 pb-8">
             <Button
               variant="outline"
               size="lg"
               asChild
-              className="btn-bc-style font-mono w-full max-w-xs"
+              className="btn-bc-style w-full rounded-full"
             >
               <a
-                href="/resume.pdf"
+                href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {" "}
-                {/* Replace */}
                 Resume
               </a>
             </Button>
-          </nav>
-          <div className="flex space-x-6 mt-8">
-            <Link
-              href={contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github size={24} />
-            </Link>
-            <Link
-              href={contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin size={24} />
-            </Link>
+            <div className="flex items-center gap-5 text-muted-foreground">
+              <Link
+                href={contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="transition-colors hover:text-primary"
+              >
+                <Github size={22} />
+              </Link>
+              <Link
+                href={contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="transition-colors hover:text-primary"
+              >
+                <Linkedin size={22} />
+              </Link>
+            </div>
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 }

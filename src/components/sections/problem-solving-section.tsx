@@ -1,39 +1,42 @@
-import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code2, ExternalLink } from 'lucide-react';
-import Link from 'next/link';
 import { SectionContainer } from '@/components/ui/section-container';
-
-interface ProfileLink {
-  name: string;
-  url: string;
-}
+import type { ProblemSolvingProfile } from '@/data/portfolio';
+import { Code2, ExternalLink } from 'lucide-react';
 
 interface ProblemSolvingSectionProps {
-  profiles: ProfileLink[];
+  profiles: ProblemSolvingProfile[];
 }
 
-export function ProblemSolvingSection({ profiles }: ProblemSolvingSectionProps) {
+export function ProblemSolvingSection({
+  profiles,
+}: ProblemSolvingSectionProps) {
   return (
-    <SectionContainer title="Problem Solving" id="problem-solving">
-      <Card className="hover:border-primary transition-colors duration-300">
+    <SectionContainer
+      title="Problem Solving"
+      id="problem-solving"
+      description="Competitive programming has helped sharpen my algorithmic thinking, debugging habits, and comfort with edge cases."
+    >
+      <Card className="border-border/80 bg-card/70 shadow-[0_16px_40px_rgba(2,6,23,0.14)] transition-colors duration-300 hover:border-primary/50">
         <CardHeader>
-          <CardTitle className="text-2xl font-headline text-primary flex items-center">
-            <Code2 className="mr-3 h-6 w-6" />
+          <CardTitle className="flex items-center gap-3 text-2xl font-headline text-foreground">
+            <Code2 className="h-6 w-6 text-primary" />
             Coding Profiles
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground mb-6">
-            I enjoy sharpening my problem-solving skills on various competitive programming platforms. You can find my profiles here:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {profiles.map((profile, index) => (
-              <Button key={index} variant="outline" asChild className="justify-start text-left h-auto py-3 px-4 shadow-sm hover:bg-accent/10">
-                <Link href={profile.url} target="_blank" className="flex items-center w-full">
-                  <span className="flex-grow font-medium text-foreground">{profile.name}</span>
-                  <ExternalLink className="ml-2 h-4 w-4 text-muted-foreground" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {profiles.map((profile) => (
+              <Button
+                key={profile.name}
+                variant="outline"
+                asChild
+                className="btn-bc-style h-auto justify-between rounded-2xl border-border/80 bg-background/70 px-4 py-4 text-left"
+              >
+                <Link href={profile.url} target="_blank" rel="noopener noreferrer">
+                  <span className="font-medium text-foreground">{profile.name}</span>
+                  <ExternalLink className="ml-4 h-4 w-4 shrink-0 text-muted-foreground" />
                 </Link>
               </Button>
             ))}

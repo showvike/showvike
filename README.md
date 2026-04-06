@@ -1,71 +1,30 @@
-# 👋 Hi, I'm Showvike Mondal Ovi
+# Showvike Mondal Ovi Portfolio
 
-### 💻 Full-Stack Software Engineer | Passionate about clean code, performance & scalable systems
+Next.js portfolio site for Showvike Mondal Ovi, a software engineer based in Mirpur, Dhaka, Bangladesh.
 
-I'm a software engineer based in Dhaka, Bangladesh, with **2 years of professional experience** in building robust, scalable, and user-centered web applications. My work spans the full development cycle—from frontend interfaces to backend systems and cloud-native architecture.
+## Focus
 
-📝 Resume
-<br>
-<br>
-[![Download-Resume](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download-Resume")](https://drive.google.com/file/d/1ZLyxx1_OH-F8cH-jKDE1ZEFUS6PcXd7b/view?usp=sharing)
+- Full-stack web platforms
+- Shopify themes and apps
+- ReactJS, NextJS, JavaScript, TypeScript
+- NodeJS, ExpressJS, API architecture, database design
+- AWS services including Cognito, AppSync, Amplify, Lambda, S3, DynamoDB, and SES
 
----
+## Experience Highlights
 
-## 🔧 Tech Stack
+- Software Engineer at Zecodeek IT Ltd. working on custom Shopify stores, themes, and apps
+- Jr. Software Engineer at Doodle Inc. contributing to a global job platform, a 7M+ user migration project, and a concert ticketing platform with coupon flows tied to ৳4 crore+ sales
+- Intern Web Developer at Tiggzy IT building portfolio sites, e-commerce features, and HRM systems
 
-**Frontend:**
-- ReactJS, NextJS, TypeScript, JavaScript
-- TailwindCSS, Redux Toolkit, RTK Query, Material UI, Ant Design
+## Resume
 
-**Backend:**
-- NodeJS, ExpressJS
-- REST APIs, GraphQL, JWT
+[Open Resume](https://drive.google.com/file/d/1ZLyxx1_OH-F8cH-jKDE1ZEFUS6PcXd7b/view?usp=sharing)
 
-**Databases:**
-- MongoDB, MySQL, Mongoose
+## Contact
 
-**Cloud & DevOps:**
-- AWS (Cognito, AppSync, Amplify, Lambda, S3, SES, DynamoDB)
-- Vercel, Netlify, Hostinger
-
-**Tools:**
-- Git, GitHub, Postman, Chrome DevTools, Jira, Figma
-
----
-
-## 🛠 Featured Projects
-
-### 🌍 Global Job Platform
-Multi-role job portal with advanced features like candidate-agency linking, real-time notifications, role-based access control, and integrated payments.  
-**Stack:** NextJS, ReactJS, GraphQL, AWS, TypeScript, TailwindCSS
-
-### 📈 Social Media Platform (7M+ Users)
-Contributed to migrating a high-traffic platform from ReactJS to NextJS for SEO improvement. Also developed a dynamic investor dashboard.  
-**Stack:** NextJS, Redux, AWS, GraphQL
-
-### 🎟 Concert Event Organizer (৳4 Crore+ Sales)
-Built and maintained a full coupon management module for a large-scale event ticketing platform.  
-**Stack:** ReactJS, NodeJS, AWS, Redux Toolkit
-
----
-
-## 🏆 Achievements
-
-- Participated in **ICPC 2019**
-- Finalist in various **competitive programming contests**
-- Organized and judged DCC CSE WEEK (2020–2022)
-
----
-
-## 🤝 Let's Connect
-
-- 📧 Email: [showvike@gmail.com](mailto:showvike@gmail.com)
-- 💼 LinkedIn: [linkedin.com/in/showvike](https://linkedin.com/in/showvike)
-- 🧠 HackerRank: [hackerrank.com/showvike](https://hackerrank.com/showvike)
-- 🔍 LeetCode: [leetcode.com/showvike](https://leetcode.com/showvike)
-- ⚔️ Codeforces: [codeforces.com/profile/showvike](https://codeforces.com/profile/showvike)
-
----
-
-> "Consistency, clarity, and craftsmanship — that’s how I build software."
-> 
+- Email: [showvike@gmail.com](mailto:showvike@gmail.com)
+- LinkedIn: [linkedin.com/in/showvike](https://linkedin.com/in/showvike)
+- GitHub: [github.com/showvike](https://github.com/showvike)
+- HackerRank: [hackerrank.com/showvike](https://hackerrank.com/showvike)
+- LeetCode: [leetcode.com/showvike](https://leetcode.com/showvike)
+- Codeforces: [codeforces.com/profile/showvike](https://codeforces.com/profile/showvike)

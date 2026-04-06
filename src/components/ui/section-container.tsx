@@ -4,16 +4,39 @@ import { cn } from '@/lib/utils';
 interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   title?: string;
+  description?: string;
   id?: string;
 }
 
-export function SectionContainer({ children, title, id, className, ...props }: SectionContainerProps) {
+export function SectionContainer({
+  children,
+  title,
+  description,
+  id,
+  className,
+  ...props
+}: SectionContainerProps) {
   return (
-    <section id={id} className={cn('py-8 md:py-12', className)} {...props}>
+    <section id={id} className={cn('py-10 md:py-14', className)} {...props}>
       {title && (
-        <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary mb-8 md:mb-12 text-center">
-          {title}
-        </h2>
+        <div className="mb-8 md:mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <div className="mb-3 flex items-center gap-3">
+              <span className="font-mono text-xs uppercase tracking-[0.32em] text-primary/80">
+                Section
+              </span>
+              <span className="h-px w-16 bg-border/80" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-headline font-semibold text-foreground">
+              {title}
+            </h2>
+          </div>
+          {description ? (
+            <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base md:text-right">
+              {description}
+            </p>
+          ) : null}
+        </div>
       )}
       {children}
     </section>

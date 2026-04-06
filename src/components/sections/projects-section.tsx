@@ -1,75 +1,59 @@
-import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { ExternalLink, Github } from 'lucide-react';
-import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SectionContainer } from '@/components/ui/section-container';
-import Image from 'next/image';
-
-interface Project {
-  name: string;
-  description: string;
-  stack: string[];
-  company?: string; // Company where project was developed
-  githubUrl?: string;
-  liveUrl?: string;
-  imageHint?: string; // For data-ai-hint
-}
+import type { FeaturedProject } from '@/data/portfolio';
+import { Layers3 } from 'lucide-react';
 
 interface ProjectsSectionProps {
-  projects: Project[];
+  projects: FeaturedProject[];
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <SectionContainer title="Project Portfolio" id="projects">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {projects.map((project, index) => (
-          <Card key={index} className="flex flex-col hover:border-primary transition-colors duration-300">
-            <CardHeader>
-              <Image 
-                src={`https://placehold.co/600x400.png`}
-                alt={`${project.name} placeholder image`}
-                width={600}
-                height={400}
-                className="rounded-t-lg object-cover aspect-[3/2]"
-                data-ai-hint={project.imageHint || "technology software"}
-              />
-              <CardTitle className="mt-4 text-xl font-headline text-primary">{project.name}</CardTitle>
-              {project.company && <CardDescription className="text-sm text-muted-foreground">Developed at {project.company}</CardDescription>}
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="text-sm text-foreground/90 mb-4">{project.description}</p>
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold uppercase text-muted-foreground mb-2">Tech Stack:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="px-2 py-0.5 text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+    <SectionContainer
+      title="Selected Projects"
+      id="projects"
+      description="A concise view of the most relevant production work from Shopify, multi-role platform, migration, and ticketing projects."
+    >
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => (
+          <Card
+            key={`${project.company}-${project.name}`}
+            className="group flex h-full flex-col border-border/80 bg-card/70 shadow-[0_18px_40px_rgba(2,6,23,0.16)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+          >
+            <CardHeader className="space-y-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.22em] text-primary">
+                  <Layers3 className="h-3.5 w-3.5" />
+                  {project.category}
                 </div>
+                <p className="text-xs text-muted-foreground">{project.company}</p>
+              </div>
+              <div className="space-y-3">
+                <CardTitle className="text-2xl font-headline text-foreground transition-colors group-hover:text-primary">
+                  {project.name}
+                </CardTitle>
+                <Badge className="w-fit rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/10">
+                  {project.impact}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="flex flex-1 flex-col">
+              <p className="text-sm leading-7 text-muted-foreground md:text-[15px]">
+                {project.description}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <Badge
+                    key={tech}
+                    variant="secondary"
+                    className="rounded-full border border-border/80 bg-background/80 px-2.5 py-1 text-xs text-foreground"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
               </div>
             </CardContent>
-            <CardFooter className="mt-auto pt-0 pb-4 px-6">
-              <div className="flex space-x-2">
-                {project.githubUrl && (
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={project.githubUrl} target="_blank">
-                      <Github className="mr-2 h-4 w-4" /> GitHub
-                    </Link>
-                  </Button>
-                )}
-                {project.liveUrl && (
-                  <Button variant="default" size="sm" asChild>
-                    <Link href={project.liveUrl} target="_blank">
-                      <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                    </Link>
-                  </Button>
-                )}
-              </div>
-            </CardFooter>
           </Card>
         ))}
       </div>
