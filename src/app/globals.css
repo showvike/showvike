@@ -57,7 +57,7 @@ body {
     --popover-foreground: 210 17% 82%;
     
     --primary: hsl(var(--primary-h) var(--primary-s) var(--primary-l)); /* Vibrant Teal/Green - Original: 170 75% 40% */
-    --primary-foreground: 222 83% 6%; /* Dark text on primary buttons */
+    --primary-foreground: 222 83% 51%; /* Dark text on primary buttons */
     
     --secondary: 217 33% 17%; /* Darker blue-gray for secondary elements */
     --secondary-foreground: 210 17% 82%;
@@ -66,7 +66,7 @@ body {
     --muted-foreground: 210 15% 60%; /* Lighter muted text */
     
     --accent: hsl(var(--primary-h) var(--primary-s) var(--primary-l)); /* Accent same as primary */
-    --accent-foreground: 222 83% 6%;
+    --accent-foreground: 222 71% 38%;
     
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
