@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import type { ContactInfo } from "@/data/portfolio";
 import { Github, Linkedin, Menu, X as CloseIcon } from "lucide-react";
 import Link from "next/link";
@@ -115,6 +116,7 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
               </Link>
             ))}
             <div className="ml-3 flex items-center gap-2 rounded-full border border-border/70 bg-card/55 px-2 py-1 shadow-[0_8px_24px_rgba(2,6,23,0.14)]">
+              <ThemeToggle />
               <Link
                 href={contact.github}
                 target="_blank"
@@ -202,6 +204,7 @@ export function Header({ contact, name, resumeUrl }: HeaderProps) {
               </a>
             </Button>
             <div className="flex items-center gap-4 text-muted-foreground">
+              <ThemeToggle />
               <Link
                 href={contact.github}
                 target="_blank"
